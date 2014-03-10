@@ -39,6 +39,12 @@ static dispatch_once_t token;
     [[ALLRMiscellaneousAPIInfoManager sharedManager] updateAll];
 }
 
+-(void)removeAll:(void (^)(BOOL successful))completion{
+    [self.keychainWrapper resetKeychainItem];
+    if(completion) completion(YES);
+    [[ALLRMiscellaneousAPIInfoManager sharedManager] updateAll];
+}
+
 - (BOOL)hasCredentials{
     return ([self clientID] && ![[self clientID] isEqualToString:@""] && [self APIKey] && ![[self APIKey] isEqualToString:@""]);
 }

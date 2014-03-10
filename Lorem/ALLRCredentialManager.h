@@ -17,7 +17,7 @@
 + (instancetype)sharedManager;
 
 - (void)_setCredentials:(NSDictionary *)credentials completion:(void (^)(BOOL successful))completion;
-
+-(void)removeAll:(void (^)(BOOL successful))completion;
 
 - (BOOL)hasCredentials;
 - (NSString *)clientID;

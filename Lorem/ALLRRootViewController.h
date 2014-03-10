@@ -17,5 +17,5 @@
 @interface ALLRRootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) UITableViewController *tableViewController;
-
+-(IBAction)logout:(id)sender;
 @end

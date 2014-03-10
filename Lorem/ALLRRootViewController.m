@@ -67,6 +67,11 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    // Tabbar shit
+    UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+    self.navigationItem.leftBarButtonItem = logoutItem;
+    
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.tableViewController.tableView.frame = self.view.bounds;
@@ -93,6 +98,16 @@
             }
         }];
     }
+}
+-(IBAction)logout:(id)sender{
+    [[ALLRCredentialManager sharedManager] removeAll:^(BOOL success){
+        if(success){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ALLRLoginViewController *loginViewController = [[ALLRLoginViewController alloc] init];
+                [self.navigationController pushViewController:loginViewController animated:YES];
+            });
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning{

@@ -13,7 +13,7 @@
 - (id)initWithIdentifier:(NSString *)identifier accessGroup:(NSString *)accessGroup;
 - (void)setObject:(id)inObject forKey:(id)key;
 - (id)objectForKey:(id)key;
-
+- (void)deleteKeychainValue:(NSString *)identifier;
 - (void)resetKeychainItem;
 
 @end

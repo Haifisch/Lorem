@@ -73,7 +73,7 @@
         }
     }else{
         UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [saveButton setTitle:@"save" forState:UIControlStateNormal];
+        [saveButton setTitle:@"Save" forState:UIControlStateNormal];
         [saveButton addTarget:self action:@selector(saveCredentials) forControlEvents:UIControlEventTouchUpInside];
         saveButton.frame = (CGRect){CGPointZero ,{self.view.bounds.size.width, 40}};
         saveButton.tintColor = [UIColor DOBlueColor];

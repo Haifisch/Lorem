@@ -238,5 +238,22 @@
 	
 	if(attributes) CFRelease(attributes);
 }
+static NSString *serviceName = @"com.aehmlo.lorem";
 
+- (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
+    NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
+    
+    [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    
+    NSData *encodedIdentifier = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrGeneric];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrAccount];
+    [searchDictionary setObject:serviceName forKey:(__bridge id)kSecAttrService];
+    
+    return searchDictionary;
+}
+- (void)deleteKeychainValue:(NSString *)identifier {
+    NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
+    SecItemDelete((__bridge CFDictionaryRef)searchDictionary);
+}
 @end
